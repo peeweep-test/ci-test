@@ -5,3 +5,8 @@ repos:
   - repo: testestse
     group: sig-deepin-riscv64
 
+  - repo: htop
+    group: sig-deepin-riscv64
+    
+  - repo: rsync
+    group: sig-deepin-riscv64
