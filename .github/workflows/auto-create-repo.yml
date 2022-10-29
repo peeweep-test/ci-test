@@ -1,7 +1,9 @@
 name: auto create repo
 on:
-  workflow_dispatch:
-
+  pull_request_target:
+    types: [opened, synchronize, closed]
+    paths:
+      - "repos.yml"
 
 env:
   APP_ID: 164400
@@ -12,7 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
       - name: install depends
+        if: github.event.pull_request.merged
         run: |
           sudo apt-get install curl    
       - name: install depends for load scripts
