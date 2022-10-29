@@ -49,6 +49,7 @@ jobs:
             });
             core.setOutput('app_token', token)
       - name: create_repo
+        if: github.event.pull_request.merged
         id: create_repo
         shell: python
         env:
